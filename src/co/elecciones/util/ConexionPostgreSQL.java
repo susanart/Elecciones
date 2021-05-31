@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
+
 
 
 
@@ -72,7 +75,43 @@ public class ConexionPostgreSQL {
 		return this.preparedStatement;
 	}
 	
+	public ResultSet consultar(String sql) {
+
+		try { 
+			//ejecutar una consulta
+			Statement st =  this.con.createStatement();
+			//traer el resultado de la consulta
+			ResultSet rs = st.executeQuery(sql);
+
+			return rs;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
 	
 	
+	// COMPROBAR
+	public static void main(String[] args) {
+		ConexionPostgreSQL cp = new ConexionPostgreSQL();
+		
+		ResultSet r = cp.consultar("select * from candidato");
+		
+		try {
+			while(r.next()) {
+				Integer id = r.getInt(1); // posicion 1 email
+				String nombre = r.getString("nombre");
+				System.out.print("Nombre:" +nombre );
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		cp.cerrarConexion();
+		
+	}
 	
 }	
