@@ -17,14 +17,15 @@ public class ConexionPostgreSQL {
 	private static ConexionPostgreSQL db;  // para patron singleton
 	private PreparedStatement  preparedStatement;
 	
-	private static final String url = "jdbc:postgresql://localhost:5432/"; // tipodeconexion:servicio://servidor:puerto
+	
 	private static final String dbName = "mnjgxshj";
 	private static final String host = "queenie.db.elephantsql.com";
 	private static final String driver = "org.postgresql.Driver";
 	private static final String userName = "mnjgxshj";
 	private static final String password = "Uzjqo00sxV0W9OzPEB1q3wpoVvGMbbUV";
-	
+	private static String url = "jdbc:postgresql://" + host + ":5432/" + db;
 	public ConexionPostgreSQL() {
+		String url = "jdbc:postgresql://" + host + ":5432/" + db;
 		try {
 			Class.forName(driver).newInstance();
 			con = (Connection)DriverManager.getConnection(url+dbName,userName,password);
@@ -93,25 +94,6 @@ public class ConexionPostgreSQL {
 	}
 	
 	
-	// COMPROBAR
-	public static void main(String[] args) {
-		ConexionPostgreSQL cp = new ConexionPostgreSQL();
-		
-		ResultSet r = cp.consultar("select * from candidato");
-		
-		try {
-			while(r.next()) {
-				Integer id = r.getInt(1); // posicion 1 email
-				String nombre = r.getString("nombre");
-				System.out.print("Nombre:" +nombre );
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		cp.cerrarConexion();
-		
-	}
+	
 	
 }	
