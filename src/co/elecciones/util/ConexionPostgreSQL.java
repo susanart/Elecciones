@@ -77,22 +77,7 @@ public class ConexionPostgreSQL {
 		return this.preparedStatement;
 	}
 	
-	public ResultSet consultar(String sql) {
 
-		try { 
-			//ejecutar una consulta
-			Statement st =  this.con.createStatement();
-			//traer el resultado de la consulta
-			ResultSet rs = st.executeQuery(sql);
-
-			return rs;
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return null;
-	}
 	
 	
 	
