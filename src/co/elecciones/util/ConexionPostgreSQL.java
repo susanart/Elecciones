@@ -24,8 +24,9 @@ public class ConexionPostgreSQL {
 	private static final String userName = "mnjgxshj";
 	private static final String password = "Uzjqo00sxV0W9OzPEB1q3wpoVvGMbbUV";
 	private static String url = "jdbc:postgresql://" + host + ":5432/" + db;
+	
 	public ConexionPostgreSQL() {
-		String url = "jdbc:postgresql://" + host + ":5432/" + db;
+		
 		try {
 			Class.forName(driver).newInstance();
 			con = (Connection)DriverManager.getConnection(url+dbName,userName,password);
