@@ -144,7 +144,7 @@ public class EleccionServlet extends HttpServlet {
 		List<Candidato> listCandidatos  = candidatoDao.selectAll();
 		request.setAttribute( "listCandidatos", listCandidatos);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("candidatolist.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("candidatoList.jsp");
 		dispatcher.forward(request,response);
 	}
 
